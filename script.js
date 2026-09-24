@@ -1,3 +1,6 @@
+// This game contains 4 components
+
+// First Component -------- Game Board ------------
 const gameboard = (() => {
   let board = ["", "", "", "", "", "", "", "", ""];
   function placeSymbol(position, symbol) {
@@ -22,9 +25,12 @@ const gameboard = (() => {
   };
 })();
 
+// Second Component -------- Player ------------
 function createPlayer(name, symbol) {
   return {
     name,
     symbol,
   };
 }
+
+// Third Component -------- Game Controller ------------
