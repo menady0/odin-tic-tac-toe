@@ -1,7 +1,7 @@
 // This game contains 4 components
 
 // First Component -------- Game Board ------------
-const gameboard = (() => {
+const gameBoard = (() => {
   let board = ["", "", "", "", "", "", "", "", ""];
   function placeSymbol(position, symbol) {
     if (board[position] === "") {
@@ -34,3 +34,76 @@ function createPlayer(name, symbol) {
 }
 
 // Third Component -------- Game Controller ------------
+function gameController() {
+  let player1, player2, currentPlayer, isGameOver;
+
+  function startGame() {
+    player1 = createPlayer("Mina", "X");
+    player2 = createPlayer("Alex", "O");
+    currentPlayer = player1;
+    gameBoard.resetBoard();
+    isGameOver = false;
+  }
+  function turnOver() {
+    if (currentPlayer === player1) currentPlayer = player2;
+    else currentPlayer = player1;
+  }
+  function checkTie() {
+    const board = gameBoard.getBoard();
+    for (let i = 0; i < board.length; i++) {
+      if (board[i] === "") return false;
+    }
+    return true;
+  }
+  function checkWinner() {
+    const winningCombinations = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+    const board = gameBoard.getBoard();
+
+    for (let i = 0; i < winningCombinations.length; i++) {
+      const item = winningCombinations[i];
+      const first = item[0];
+      const second = item[1];
+      const third = item[2];
+      if (
+        board[first] !== "" &&
+        board[first] === board[second] &&
+        board[second] === board[third]
+      ) {
+        return board[first];
+      }
+    }
+    return null;
+  }
+  function playTurn(position) {
+    const move = gameBoard.placeSymbol(position, currentPlayer.symbol);
+    if (move) {
+      const winner = checkWinner();
+      if (winner) {
+        isGameOver = true;
+      } else {
+        const tie = checkTie();
+        if (tie) {
+          isGameOver = true;
+        } else {
+          turnOver();
+        }
+      }
+    }
+  }
+  return {
+    startGame,
+    turnOver,
+    checkTie,
+    checkWinner,
+    playTurn,
+  };
+}
