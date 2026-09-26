@@ -122,13 +122,28 @@ function gameController() {
 const game = gameController();
 const cells = document.querySelectorAll(".cell");
 game.startGame();
+updateUI();
 cells.forEach((cell) =>
   cell.addEventListener("click", () => {
     const position = Number(cell.dataset.cell);
     const moveSuccessful = game.playTurn(position);
-    if(moveSuccessful){
-      let board = game.getGameState().board;
-      cell.textContent = board[position];
+    if (moveSuccessful) {
+      updateUI();
     }
   }),
 );
+function updateUI() {
+  const gameState = game.getGameState();
+  const board = gameState.board;
+  for (let i = 0; i < board.length; i++) {
+    cells[i].textContent = board[i];
+  }
+  const gameStatusElement = document.querySelector(".game-status");
+  if (gameState.winner) {
+    gameStatusElement.textContent = `${gameState.currentPlayer.name} wins!`;
+  } else if (gameState.gameOver && gameState.winner === null) {
+    gameStatusElement.textContent = `It is a tie!`;
+  } else {
+    gameStatusElement.textContent = `${gameState.currentPlayer.name}'s turn`;
+  }
+}
