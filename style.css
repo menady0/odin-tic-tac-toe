@@ -6,15 +6,18 @@
 body {
   min-height: 100vh;
 }
-.container {
+.game {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-inline: 10%;
   border: 1px solid red;
 }
-.container .players,
-.container .turn {
+.hide {
+  display: none;
+}
+.game .players,
+.game .turn {
   display: flex;
   gap: 16px;
   margin-block: 16px;

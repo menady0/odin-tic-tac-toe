@@ -37,9 +37,9 @@ function createPlayer(name, symbol) {
 function gameController() {
   let player1, player2, currentPlayer, isGameOver;
 
-  function startGame() {
-    player1 = createPlayer("Mina", "X");
-    player2 = createPlayer("Alex", "O");
+  function startGame(playerName1, playerName2) {
+    player1 = createPlayer(playerName1, "X");
+    player2 = createPlayer(playerName2, "O");
     currentPlayer = player1;
     gameBoard.resetBoard();
     isGameOver = false;
@@ -121,8 +121,6 @@ function gameController() {
 // Fourth Component -------- Display Controller ------------
 const game = gameController();
 const cells = document.querySelectorAll(".cell");
-game.startGame();
-updateUI();
 cells.forEach((cell) =>
   cell.addEventListener("click", () => {
     const position = Number(cell.dataset.cell);
@@ -151,4 +149,16 @@ const restart = document.querySelector(".restart");
 restart.addEventListener("click", () => {
   game.startGame();
   updateUI();
+});
+
+const startGameElement = document.querySelector(".start-game");
+const inpPlayer1 = document.querySelector("#player1");
+const inpPlayer2 = document.querySelector("#player2");
+startGameElement.addEventListener("click", () => {
+  const player1Name = inpPlayer1.value;
+  const player2Name = inpPlayer2.value;
+  game.startGame(player1Name, player2Name);
+  updateUI();
+  document.querySelector(".game-start").classList.add('hide')
+  document.querySelector(".game").classList.remove('hide')
 });
