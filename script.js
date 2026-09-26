@@ -44,6 +44,11 @@ function gameController() {
     gameBoard.resetBoard();
     isGameOver = false;
   }
+  function restartGame() {
+    currentPlayer = player1;
+    isGameOver = false;
+    gameBoard.resetBoard();
+  }
   function turnOver() {
     if (currentPlayer === player1) currentPlayer = player2;
     else currentPlayer = player1;
@@ -102,6 +107,8 @@ function gameController() {
   }
   function getGameState() {
     return {
+      player1,
+      player2,
       currentPlayer,
       gameOver: isGameOver,
       winner: checkWinner(),
@@ -110,6 +117,7 @@ function gameController() {
   }
   return {
     startGame,
+    restartGame,
     turnOver,
     checkTie,
     checkWinner,
@@ -130,9 +138,15 @@ cells.forEach((cell) =>
     }
   }),
 );
+
 function updateUI() {
   const gameState = game.getGameState();
   const board = gameState.board;
+  const player1 = document.querySelector(".player1");
+  const player2 = document.querySelector(".player2");
+  player1.textContent = `Player: ${gameState.player1.name}, Symbol: ${gameState.player1.symbol}`;
+  player2.textContent = `Player: ${gameState.player2.name}, Symbol: ${gameState.player2.symbol}`;
+
   for (let i = 0; i < board.length; i++) {
     cells[i].textContent = board[i];
   }
@@ -147,7 +161,7 @@ function updateUI() {
 }
 const restart = document.querySelector(".restart");
 restart.addEventListener("click", () => {
-  game.startGame();
+  game.restartGame();
   updateUI();
 });
 
@@ -159,6 +173,6 @@ startGameElement.addEventListener("click", () => {
   const player2Name = inpPlayer2.value;
   game.startGame(player1Name, player2Name);
   updateUI();
-  document.querySelector(".game-start").classList.add('hide')
-  document.querySelector(".game").classList.remove('hide')
+  document.querySelector(".game-start").classList.add("hide");
+  document.querySelector(".game").classList.remove("hide");
 });
