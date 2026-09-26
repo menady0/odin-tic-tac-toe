@@ -89,7 +89,10 @@ function gameController() {
     return null;
   }
   function playTurn(position) {
-    const move = gameBoard.placeSymbol(position, currentPlayer.symbol);
+    let move = false;
+    if (!isGameOver) {
+      move = gameBoard.placeSymbol(position, currentPlayer.symbol);
+    }
     if (move) {
       const winner = checkWinner();
       if (winner) {
