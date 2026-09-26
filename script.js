@@ -98,6 +98,15 @@ function gameController() {
         }
       }
     }
+    return move;
+  }
+  function getGameState() {
+    return {
+      currentPlayer,
+      gameOver: isGameOver,
+      winner: checkWinner(),
+      board: gameBoard.getBoard(),
+    };
   }
   return {
     startGame,
@@ -105,5 +114,6 @@ function gameController() {
     checkTie,
     checkWinner,
     playTurn,
+    getGameState,
   };
 }

@@ -3,3 +3,41 @@
   padding: 0;
   box-sizing: border-box;
 }
+body {
+  min-height: 100vh;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-inline: 10%;
+  border: 1px solid red;
+}
+.container .players,
+.container .turn {
+  display: flex;
+  gap: 16px;
+  margin-block: 16px;
+}
+
+.parent {
+  height: 306px;
+  width: 306px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+.cell {
+  border: 1px solid grey;
+  width: calc(300px / 3);
+  height: calc(300px / 3);
+  transition: background-color 0.3s;
+  font-size: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+}
+.cell:hover {
+  background-color: grey;
+}
