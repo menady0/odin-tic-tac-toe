@@ -117,3 +117,18 @@ function gameController() {
     getGameState,
   };
 }
+
+// Fourth Component -------- Display Controller ------------
+const game = gameController();
+const cells = document.querySelectorAll(".cell");
+game.startGame();
+cells.forEach((cell) =>
+  cell.addEventListener("click", () => {
+    const position = Number(cell.dataset.cell);
+    const moveSuccessful = game.playTurn(position);
+    if(moveSuccessful){
+      let board = game.getGameState().board;
+      cell.textContent = board[position];
+    }
+  }),
+);
