@@ -165,10 +165,11 @@ restart.addEventListener("click", () => {
   updateUI();
 });
 
-const startGameElement = document.querySelector(".start-game");
+const startGameElement = document.querySelector("form");
 const inpPlayer1 = document.querySelector("#player1");
 const inpPlayer2 = document.querySelector("#player2");
-startGameElement.addEventListener("click", () => {
+startGameElement.addEventListener("submit", (e) => {
+  e.preventDefault();
   const player1Name = inpPlayer1.value;
   const player2Name = inpPlayer2.value;
   game.startGame(player1Name, player2Name);
