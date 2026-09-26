@@ -147,3 +147,8 @@ function updateUI() {
     gameStatusElement.textContent = `${gameState.currentPlayer.name}'s turn`;
   }
 }
+const restart = document.querySelector(".restart");
+restart.addEventListener("click", () => {
+  game.startGame();
+  updateUI();
+});
