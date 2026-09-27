@@ -83,7 +83,7 @@ function gameController() {
         board[first] === board[second] &&
         board[second] === board[third]
       ) {
-        return board[first];
+        return winningCombinations[i];
       }
     }
     return null;
@@ -95,7 +95,7 @@ function gameController() {
     }
     if (move) {
       const winner = checkWinner();
-      if (winner) {
+      if (winner !== null) {
         isGameOver = true;
       } else {
         const tie = checkTie();
@@ -169,7 +169,7 @@ function updateUI() {
     } else if (board[i] === "O") {
       cells[i].classList.add("p2");
     } else {
-      cells[i].classList.remove("p1", "p2");
+      cells[i].classList.remove("p1", "p2", 'win');
     }
   }
   const gameStatusElement = document.querySelector(".game-status-case");
@@ -178,6 +178,8 @@ function updateUI() {
     gameStatusElementParent.classList.add("win");
     gameStatusIcon.classList.add("fa-trophy");
     gameStatusIcon.classList.remove("fa-circle");
+    console.log(`winner combination: ${gameState.winner}`);
+    updateWinCells(cells, gameState.winner);
   } else if (gameState.gameOver && gameState.winner === null) {
     gameStatusElement.textContent = `It is a tie!`;
     gameStatusElementParent.classList.add("tie");
@@ -223,7 +225,12 @@ restart.addEventListener("click", () => {
   game.restartGame();
   updateUI();
 });
-
+function updateWinCells(cells, winningCombinations) {
+  for (let i = 0; i < winningCombinations.length; i++) {
+    let cell = winningCombinations[i];
+    cells[cell].classList.add("win");
+  }
+}
 const startGameElement = document.querySelector("form");
 const inpPlayer1 = document.querySelector("#player1");
 const inpPlayer2 = document.querySelector("#player2");

@@ -190,3 +190,19 @@ header p {
 .cell:hover {
   background-color: #e2e8f0;
 }
+.cell.win {
+  border: 1px solid #22c55e;
+  background-color: #dcfce7;
+  animation: win-pop 0.8s ease;
+}
+@keyframes win-pop {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
