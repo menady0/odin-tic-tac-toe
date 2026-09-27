@@ -164,6 +164,13 @@ function updateUI() {
 
   for (let i = 0; i < board.length; i++) {
     cells[i].textContent = board[i];
+    if (board[i] === "X") {
+      cells[i].classList.add("p1");
+    } else if (board[i] === "O") {
+      cells[i].classList.add("p2");
+    } else {
+      cells[i].classList.remove("p1", "p2");
+    }
   }
   const gameStatusElement = document.querySelector(".game-status-case");
   if (gameState.winner) {
@@ -176,22 +183,20 @@ function updateUI() {
     gameStatusElementParent.classList.add("tie");
     gameStatusIcon.classList.add("fa-face-meh");
     gameStatusIcon.classList.remove("fa-circle");
-
   } else {
     gameStatusElement.textContent = `${gameState.currentPlayer.name}'s turn`;
     if (gameState.currentPlayer === gameState.player1) {
       player1Card.classList.add("active");
       player2Card.classList.remove("active");
 
-      gameStatusElementParent.classList.add('player1-turn')
-      gameStatusElementParent.classList.remove('player2-turn')
-      
+      gameStatusElementParent.classList.add("player1-turn");
+      gameStatusElementParent.classList.remove("player2-turn");
     } else {
       player2Card.classList.add("active");
       player1Card.classList.remove("active");
-      
-      gameStatusElementParent.classList.add('player2-turn')
-      gameStatusElementParent.classList.remove('player1-turn')
+
+      gameStatusElementParent.classList.add("player2-turn");
+      gameStatusElementParent.classList.remove("player1-turn");
     }
   }
 }
