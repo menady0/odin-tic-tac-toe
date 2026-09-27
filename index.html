@@ -15,7 +15,7 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <div class="game-start hide">
+    <div class="game-start">
       <h1>Tic Tac Toe</h1>
       <p>A classic game for two players</p>
       <form action="#">
@@ -39,15 +39,18 @@
       </header>
       <div class="players">
         <div class="card player1">
-          <i class="fa-solid fa-circle-xmark"></i> Alex
+          <i class="fa-solid fa-circle-xmark"></i>
+          <p class="player1-name">Alex</p>
         </div>
         <div class="card player2">
-          <i class="fa-solid fa-circle-dot"></i> Sam
+          <i class="fa-solid fa-circle-dot"></i> 
+          <p class="player2-name">Sam</p>
         </div>
       </div>
       <div class="controls">
         <div class="game-status">
-          <i class="fa-solid fa-circle"></i> Alex's turn
+          <i class="fa-solid fa-circle"></i>
+          <p class="game-status-case">Alex's turn</p>
         </div>
         <button class="restart" type="button">
           <i class="fa-solid fa-arrow-rotate-right"></i> Restart Game
