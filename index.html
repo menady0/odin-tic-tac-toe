@@ -5,10 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+      integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <script src="script.js" defer></script>
   </head>
   <body>
-    <div class="game-start">
+    <div class="game-start hide">
       <h1>Tic Tac Toe</h1>
       <p>A classic game for two players</p>
       <form action="#">
@@ -23,18 +30,30 @@
         <button class="start-game" type="submit">Start Game</button>
       </form>
     </div>
+
+    <!-- hide class here -->
     <div class="game hide">
-      <h1>Tic Tac Toe</h1>
-      <p>A classic game for two players</p>
+      <header>
+        <h1>Tic Tac Toe</h1>
+        <p>A classic game for two players</p>
+      </header>
       <div class="players">
-        <div class="player1">Player 1</div>
-        <div class="player2">Player 2</div>
+        <div class="card player1">
+          <i class="fa-solid fa-circle-xmark"></i> Alex
+        </div>
+        <div class="card player2">
+          <i class="fa-solid fa-circle-dot"></i> Sam
+        </div>
       </div>
-      <div class="turn">
-        <div class="game-status">Player 1 turn</div>
-        <button class="restart">restart game</button>
+      <div class="controls">
+        <div class="game-status">
+          <i class="fa-solid fa-circle"></i> Alex's turn
+        </div>
+        <button class="restart" type="button">
+          <i class="fa-solid fa-arrow-rotate-right"></i> Restart Game
+        </button>
       </div>
-      <div class="parent">
+      <div class="board">
         <div class="cell" data-cell="0"></div>
         <div class="cell" data-cell="1"></div>
         <div class="cell" data-cell="2"></div>

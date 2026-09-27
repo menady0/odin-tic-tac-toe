@@ -4,43 +4,173 @@
   box-sizing: border-box;
 }
 body {
-  min-height: 100vh;
+  background-color: #f8fafc;
 }
+/* 
+Primary & Player 1 (Blue)
+
+    Primary Button / Blue Accent: #3B82F6 (Start Game button, blue X marks, active icons)
+
+    Light Blue Background Tint: #EFF6FF (Player 1 status card & turn banners)
+
+Secondary & Player 2 (Purple)
+
+    Purple Accent: #A855F7 (Player 2 O marks & icons)
+
+    Light Purple Background Tint: #F3E8FF (Player 2 turn banners & tie game banners)
+
+Status Colors (Win & Neutral)
+
+    Success / Win Green: #22C55E (Win banner text, trophy icon, highlighted winning grid line)
+
+    Light Green Background Tint: #DCFCE7 (Win notification banners & highlighted winning cells)
+
+Backgrounds & Neutrals
+
+    Page Background: #F8FAFC (Off-white / light slate canvas)
+
+    Card Background: #FFFFFF (Pure white containers)
+
+    Borders / Grid Lines: #E2E8F0 (Input outlines, grid dividers, inactive buttons)
+
+    Primary Text: #0F172A (Headings, player names, bold labels)
+
+    Secondary Text / Subtitles: #64748B (Descriptions, subtitle text)
+*/
+/* 
+My general spacing scale for this project
+0.25rem → 4px   tiny
+0.5rem  → 8px   small
+0.75rem → 12px
+1rem    → 16px  normal
+1.5rem  → 24px  medium
+2rem    → 32px  large
+2.5rem  → 40px  very large
+*/
 .game {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-inline: 10%;
-  border: 1px solid red;
+  width: 90%;
+  max-width: 600px;
+  margin: auto;
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .hide {
   display: none;
 }
-.game .players,
-.game .turn {
-  display: flex;
-  gap: 16px;
-  margin-block: 16px;
+header {
+  color: #0f172a;
+}
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+header p {
+  color: #64748b;
+  font-size: 1rem;
 }
 
-.parent {
-  height: 306px;
-  width: 306px;
+.players {
   display: flex;
-  flex-wrap: wrap;
-  gap: 3px;
+  gap: 1rem;
+}
+.players .card {
+  border: 1px solid #e2e8f0;
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+  flex: 1;
+  font-weight: 400;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #0f172a;
+}
+.card i {
+  font-size: 1.75rem;
+}
+.card.player1 {
+  background-color: #eff6ff;
+}
+.card.player1.active {
+  border-color: #3b82f6;
+}
+.card.player1 i {
+  color: #3b82f6;
+}
+.card.player2 {
+  background-color: #f3e8ff;
+}
+.card.player2.active {
+  border-color: #a855f7;
+}
+.card.player2 i {
+  color: #a855f7;
+}
+.controls {
+  display: flex;
+  gap: 1rem;
+}
+.controls .game-status {
+  flex: 1;
+  text-align: left;
+  padding: 1rem;
+  border-radius: 5px;
+  line-height: 1;
+}
+.game-status.player1-turn {
+  color: #3b82f6;
+  background-color: #eff6ff;
+}
+.game-status.player2-turn {
+    color: #a855f7;
+  background-color: #f3e8ff;
+}
+.game-status.win {
+  color: #22C55E;
+  background-color: #DCFCE7;
+}
+.game-status.tie {
+  color: #64748b;
+  background-color: #f1f5f9;
+}
+
+.game-status i {
+  font-size: 0.75rem;
+}
+.controls button {
+  background-color: transparent;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+  border-radius: 5px;
+  padding: 0.75rem 1.25rem;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 600;
+}
+.controls button:hover {
+  background-color: #64748b;
+  color: #e2e8f0;
+}
+.board {
+  width: 100%;
+  aspect-ratio: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.25rem;
 }
 .cell {
-  border: 1px solid grey;
-  width: calc(300px / 3);
-  height: calc(300px / 3);
+  border: 1px solid lightgrey;
   transition: background-color 0.3s;
-  font-size: 5rem;
+  font-size: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 8px;
+  border-radius: 0.5rem;
 }
 .cell:hover {
-  background-color: grey;
+  background-color: #e2e8f0;
 }
