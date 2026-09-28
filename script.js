@@ -169,7 +169,7 @@ function updateUI() {
     } else if (board[i] === "O") {
       cells[i].classList.add("p2");
     } else {
-      cells[i].classList.remove("p1", "p2", 'win');
+      cells[i].classList.remove("p1", "p2", "win");
     }
   }
   const gameStatusElement = document.querySelector(".game-status-case");

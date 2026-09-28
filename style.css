@@ -1,3 +1,8 @@
+:root {
+  --border-color: #E2E8F0;
+  --player-one: #3b82f6;
+  --player-two: #a855f7;
+}
 * {
   margin: 0;
   padding: 0;
@@ -5,6 +10,7 @@
 }
 body {
   background-color: #f8fafc;
+  font-family: Arial, Helvetica, sans-serif;
 }
 /* 
 Primary & Player 1 (Blue)
@@ -47,7 +53,7 @@ My general spacing scale for this project
 2rem    → 32px  large
 2.5rem  → 40px  very large
 */
-.game {
+.game-start, .game {
   display: flex;
   flex-direction: column;
   width: 90%;
@@ -56,11 +62,71 @@ My general spacing scale for this project
   gap: 1.5rem;
   padding: 1rem 2rem;
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
 }
 .hide {
   display: none;
 }
+/* Game Start */
+form {
+  background-color: white;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+}
+form h2 {
+  color: #0f172a;
+}
+form .player {
+  display: flex;
+  flex-direction: column;
+  color: #64748b;
+}
+.player label {
+  margin-block: 0.25rem;
+  font-weight: bold;
+}
+.player input {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--border-color);
+}
+.player div {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-block: 0.5rem;
+}
+.player div i {
+  font-weight: bolder;
+  font-size: 1.25rem;
+}
+.player:first-of-type div i {
+  color: var(--player-one);
+}
+.player:last-of-type div i.fa-o {
+  color: var(--player-two);
+}
+.start-game {
+  padding: 1rem 2rem;
+  background-color: var(--player-one);
+  font-weight: bold;
+  color: white;
+  border-radius: 0.5rem;
+  font-size: 1.25rem;
+  border: transparent;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+.start-game:hover {
+  background-color: #306bc9;
+}
+
+
+/* Game */
 header {
   color: #0f172a;
 }
@@ -78,7 +144,7 @@ header p {
   gap: 1rem;
 }
 .players .card {
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-color);
   padding: 1rem 1.25rem;
   border-radius: 0.5rem;
   flex: 1;
@@ -97,19 +163,19 @@ header p {
   background-color: #eff6ff;
 }
 .card.player1.active {
-  border-color: #3b82f6;
+  border-color: var(--player-one);
 }
 .card.player1 i {
-  color: #3b82f6;
+  color: var(--player-one);
 }
 .card.player2 {
   background-color: #f3e8ff;
 }
 .card.player2.active {
-  border-color: #a855f7;
+  border-color: var(--player-two);
 }
 .card.player2 i {
-  color: #a855f7;
+  color: var(--player-two);
 }
 .controls {
   display: flex;
@@ -128,11 +194,11 @@ header p {
   text-transform: capitalize;
 }
 .game-status.player1-turn {
-  color: #3b82f6;
+  color: var(--player-one);
   background-color: #eff6ff;
 }
 .game-status.player2-turn {
-  color: #a855f7;
+  color: var(--player-two);
   background-color: #f3e8ff;
 }
 .game-status.win {
@@ -151,7 +217,7 @@ header p {
 }
 .controls button {
   background-color: transparent;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-color);
   color: #64748b;
   border-radius: 5px;
   padding: 0.75rem 1.25rem;
@@ -161,7 +227,7 @@ header p {
 }
 .controls button:hover {
   background-color: #64748b;
-  color: #e2e8f0;
+  color: var(--border-color);
 }
 .board {
   width: 100%;
@@ -182,13 +248,13 @@ header p {
   font-weight: bold;
 }
 .cell.p1 {
-  color: #3b82f6;
+  color: var(--player-one);
 }
 .cell.p2 {
-  color: #a855f7;
+  color: var(--player-two);
 }
 .cell:hover {
-  background-color: #e2e8f0;
+  background-color: var(--border-color);
 }
 .cell.win {
   border: 1px solid #22c55e;
